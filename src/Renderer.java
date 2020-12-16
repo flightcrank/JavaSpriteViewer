@@ -105,7 +105,6 @@ class Renderer implements GLEventListener {
 		gl.glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 		gl.glClear(GL3.GL_COLOR_BUFFER_BIT | GL3.GL_DEPTH_BUFFER_BIT);
 		
-		Sprite2D sprite = new Sprite2D(512, 512);
 		int spriteWidth = (int) options.widthSpinner.getValue();
 		int spriteHeight = (int) options.heightSpinner.getValue();
 		int spriteScaleWidth = (int) options.scaleSpinnerX.getValue();
@@ -113,7 +112,8 @@ class Renderer implements GLEventListener {
 		int spritePosX = (int) options.posSpinnerX.getValue();
 		int spritePosY = (int) options.posSpinnerY.getValue();
 		int spriteIndex = (int) options.indexSpinner.getValue();
-
+		
+		Sprite2D sprite = new Sprite2D(512, 512);		
 		sprite.setIndex(spriteIndex);
 		sprite.setSize(spriteWidth, spriteHeight);
 		sprite.setScale(spriteScaleWidth, spriteScaleHeight);

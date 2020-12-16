@@ -31,7 +31,7 @@ public class JavaSpriteViewer extends javax.swing.JFrame {
 			try {
 				File f = new File(args[0]);
 				BufferedImage img = ImageIO.read(f);
-				optionsPanel1.jImagePanel1.setImage(img.getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+				optionsPanel1.jImagePanel1.setImage(img.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
 				optionsPanel1.jImagePanel1.paintComponent(optionsPanel1.jImagePanel1.getGraphics());
 				optionsPanel1.setFileName(args[0]);
 				
@@ -71,11 +71,11 @@ public class JavaSpriteViewer extends javax.swing.JFrame {
                 gLJPanel1.setLayout(gLJPanel1Layout);
                 gLJPanel1Layout.setHorizontalGroup(
                         gLJPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 453, Short.MAX_VALUE)
+                        .addGap(0, 533, Short.MAX_VALUE)
                 );
                 gLJPanel1Layout.setVerticalGroup(
                         gLJPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 494, Short.MAX_VALUE)
+                        .addGap(0, 543, Short.MAX_VALUE)
                 );
 
                 getContentPane().add(gLJPanel1, java.awt.BorderLayout.CENTER);

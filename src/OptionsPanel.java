@@ -97,8 +97,8 @@ public class OptionsPanel extends javax.swing.JPanel {
 
                 jImagePanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
                 jImagePanel1.setDoubleBuffered(true);
-                jImagePanel1.setMinimumSize(new java.awt.Dimension(100, 100));
-                jImagePanel1.setPreferredSize(new java.awt.Dimension(101, 101));
+                jImagePanel1.setMinimumSize(new java.awt.Dimension(150, 150));
+                jImagePanel1.setPreferredSize(new java.awt.Dimension(150, 150));
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 0;
@@ -108,7 +108,6 @@ public class OptionsPanel extends javax.swing.JPanel {
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 1;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                 gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
                 TexturePanel.add(jCheckBox1, gridBagConstraints);
 
@@ -278,7 +277,7 @@ public class OptionsPanel extends javax.swing.JPanel {
 			try {
 				
 				BufferedImage img = ImageIO.read(file);
-				jImagePanel1.setImage(img.getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+				jImagePanel1.setImage(img.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
 				jImagePanel1.paintComponent(jImagePanel1.getGraphics());
 				//a new context is needed or else it the loadTexture functions fails
 				GLContext con = rend.glAutoDrawable.getContext();

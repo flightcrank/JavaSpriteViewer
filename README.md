@@ -10,16 +10,18 @@ anywhere in the viewable area.
 It was written to test code used to display text and also use fixed and animated 
 sprites in game projects.
 
-It is dependent on having the JOGL libs available to the java classpath to compile
-correctly. 
+In order to compiles the JOGL libs must be available on the java classpath. The jogl libs
+can be found at https://jogamp.org/deployment/v2.3.2/archive/jogamp-all-platforms.7z
 
-to compile
+Compilation instructions on a linux system are as follows... (browse to the src directory)
 
-	$ javac JavaSpriteViewer.java
+	$ javac -cp .:path_to_jogl/jar/jogl-all.jar:path_to_jogl/jar/gluegen-rt.jar 
+	$ JavaSpriteViewer.java *all other .java files in src dir*
 
 that should compile all .java files. to run the program type the command
 
-	$ java JavaSpriteViewer
+	$ java -cp .:path_to_jogl/jar/jogl-all.jar:path_to_jogl/jar/gluegen-rt.jar 
+	$ JavaSpriteViewer
 
 ## Images 
 ![swing screenshot](https://i.imgur.com/1hODp8Z.png)
