@@ -53,8 +53,8 @@ class Renderer implements GLEventListener {
 		loadTexture(options.fileName);
 
 		gl.glPointSize(15.0f);
-		//gl.glEnable(GL3.GL_DEPTH_TEST);  
-		//gl.glPolygonMode(GL3.GL_FRONT_AND_BACK, GL3.GL_LINE);
+		gl.glBlendFunc(GL3.GL_SRC_ALPHA, GL3.GL_ONE_MINUS_SRC_ALPHA);
+		gl.glEnable(GL3.GL_BLEND);
 		
 		//set background colour
 		gl.glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
