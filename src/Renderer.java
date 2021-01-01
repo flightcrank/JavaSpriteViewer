@@ -17,6 +17,7 @@ class Renderer implements GLEventListener {
 	int texo; 		//texture id
 	int numVerts = 0;
 	int numFaceIndex = 0;
+	long frame = 0;
 	long startTime = 0;
 	float width;
 	float height;
@@ -24,10 +25,20 @@ class Renderer implements GLEventListener {
 	FloatBuffer tBuf;
 	GLAutoDrawable glAutoDrawable;
 	OptionsPanel options;
+	Sprite2D sprite;
 
 	public Renderer(OptionsPanel op) {
 		
 		options = op;
+		this.sprite = new Sprite2D(512, 512);
+		int[] frames = new int[] {5, 3, 4, 3};
+		this.sprite.setFrames(frames);
+		options.setSprite(sprite);
+		
+		for (int i= 0; i < sprite.frames.length; i++) {
+			
+			options.jComboBox1.addItem(sprite.frames[i]);
+		}
 	}
 	
 	@Override
@@ -88,8 +99,8 @@ class Renderer implements GLEventListener {
 		gl.glUniform1i(flag, SDFFlag);
 		
 		// activate texture unit #0 and bind it to the texture object
-//		gl.glActiveTexture(GL3.GL_TEXTURE0);
-//		gl.glBindTexture(GL3.GL_TEXTURE_2D, texo);
+		gl.glActiveTexture(GL3.GL_TEXTURE0);
+		gl.glBindTexture(GL3.GL_TEXTURE_2D, texo);
 
 		//vert position
 		gl.glBindBuffer(GL3.GL_ARRAY_BUFFER, vbo[0]);		///make vert buffer active
@@ -112,15 +123,27 @@ class Renderer implements GLEventListener {
 		int spritePosX = (int) options.posSpinnerX.getValue();
 		int spritePosY = (int) options.posSpinnerY.getValue();
 		int spriteIndex = (int) options.indexSpinner.getValue();
-		
-		Sprite2D sprite = new Sprite2D(512, 512);		
-		sprite.setIndex(spriteIndex);
-		sprite.setSize(spriteWidth, spriteHeight);
-		sprite.setScale(spriteScaleWidth, spriteScaleHeight);
-		sprite.setPosition(spritePosX, spritePosY);
-		
+		int spriteSpeed =  60 / (int) options.jSpinner1.getValue();
+				
+		this.sprite.setIndex(spriteIndex);
+		this.sprite.setSize(spriteWidth, spriteHeight);
+		this.sprite.setScale(spriteScaleWidth, spriteScaleHeight);
+		this.sprite.setPosition(spritePosX, spritePosY);	
+		this.sprite.setSpeed(spriteSpeed);
+
 		//DRAW
 		drawSprite(gl, sprite);
+		
+		if (sprite.frames != null && frame % sprite.speed == 0  && options.jCheckBox2.isSelected()) {
+			
+			int numFrames = sprite.frames.length;
+			int newIndex = sprite.currentFrame % numFrames;
+			sprite.setIndex(sprite.frames[newIndex]);
+			options.indexSpinner.setValue(sprite.frames[newIndex]);
+			sprite.currentFrame++;
+		}
+		
+		frame++;
 	}
 	
 	@Override
@@ -187,6 +210,32 @@ class Renderer implements GLEventListener {
 	}
 	
 	public void drawSprite(GL3 gl, Sprite2D s) {
+
+		//shader uniform variables
+		int ortho = gl.glGetUniformLocation(renderingProgram, "ortho");
+		gl.glUniformMatrix4fv(ortho, 1, false, Buffers.newDirectFloatBuffer(Matrix.orthographic(0f, width, 0f, height, -1f, 1f)));
+		
+		int scale = gl.glGetUniformLocation(renderingProgram, "scale");
+		gl.glUniform2f(scale, s.scale[0], s.scale[1]);
+		
+		int pos = gl.glGetUniformLocation(renderingProgram, "pos");
+		gl.glUniform2f(pos, s.position[0], s.position[1]);
+		
+		this.vBuf = Buffers.newDirectFloatBuffer(s.verts);
+		this.tBuf = Buffers.newDirectFloatBuffer(s.uvs);
+		this.numVerts = s.verts.length / 3;
+		
+		gl.glBindBuffer(GL3.GL_ARRAY_BUFFER, vbo[0]);								//make vert buffer active
+		gl.glBufferData(GL3.GL_ARRAY_BUFFER, vBuf.limit() * Buffers.SIZEOF_FLOAT, vBuf, GL3.GL_STATIC_DRAW);	//copy verts to VBO[0] 
+		
+		gl.glBindBuffer(GL3.GL_ARRAY_BUFFER, vbo[1]);								//make tex buffer active 
+		gl.glBufferData(GL3.GL_ARRAY_BUFFER, tBuf.limit() * Buffers.SIZEOF_FLOAT, tBuf, GL3.GL_STATIC_DRAW);	//copy normals to VBO[1] 
+
+		gl.glDrawArrays(GL3.GL_TRIANGLES, 0, numVerts);
+		gl.glDrawArrays(GL3.GL_POINTS, 0, numVerts);
+	}
+	
+	public void drawSpriteAni(GL3 gl, Sprite2D s) {
 
 		//shader uniform variables
 		int ortho = gl.glGetUniformLocation(renderingProgram, "ortho");

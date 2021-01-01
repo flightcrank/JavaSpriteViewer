@@ -1,4 +1,7 @@
 
+import java.util.Arrays;
+
+
 
 /**
  * Class to represent a 2D sprite rendered in an orthographic projection
@@ -12,6 +15,9 @@ class Sprite2D {
 	float[] position;	//the position the sprite will be drawn on screen
 	int[] size;		//the size in px of the sprite in the sprite sheet
 	int index;		//the index of the sprite to be drawn from the sprite sheet
+	int[] frames;		//the array for indexs into the sprite sheet that make up the frames of animation
+	int speed;		//the speed of animation in frames
+	int currentFrame;	//the index into the frames array the sprite is on
 
 	public Sprite2D(int x, int y) {
 		
@@ -26,7 +32,33 @@ class Sprite2D {
 		
 		index = 0;
 		
+		currentFrame = 0;
+		
 		setVerts();
+	}
+	
+	/**
+	 *
+	 * @param i the rate at which the sprite animation will cycle through its frames
+	 * 
+	 * This sets sets the rate in frames that the sprite will cycle through the sprite 
+	 * index numbers in frames array, that make up the frames of animation of the sprite
+	*/	
+	public void setSpeed(int speed) {
+				
+		this.speed = speed;
+	}
+	
+	/**
+	 *
+	 * @param i an array of index's into the sprite sheet
+	 * 
+	 * This sets an array that holds the index's into the sprite sheet
+	 * that form the frames of an animated sprite.
+	*/	
+	public void setFrames(int[] indexList) {
+				
+		this.frames = Arrays.copyOf(indexList, indexList.length);
 	}
 	
 	/**

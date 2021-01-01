@@ -10,7 +10,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author karma
@@ -19,7 +18,7 @@ public class JavaSpriteViewer extends javax.swing.JFrame {
 
 	
 	/**
-	 * Creates new form SkeletonGL
+	 * Creates new gui
 	 * @param args cmd line arguments as a string array
 	 */
 	public JavaSpriteViewer(String[] args) {
@@ -31,7 +30,7 @@ public class JavaSpriteViewer extends javax.swing.JFrame {
 			try {
 				File f = new File(args[0]);
 				BufferedImage img = ImageIO.read(f);
-				optionsPanel1.jImagePanel1.setImage(img.getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+				optionsPanel1.jImagePanel1.setImage(img.getScaledInstance(150, 150, Image.SCALE_SMOOTH));
 				optionsPanel1.jImagePanel1.paintComponent(optionsPanel1.jImagePanel1.getGraphics());
 				optionsPanel1.setFileName(args[0]);
 				

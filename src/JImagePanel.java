@@ -1,4 +1,5 @@
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -20,6 +21,7 @@ public class JImagePanel extends JComponent {
 
 	public JImagePanel() {
 		
+		this.setPreferredSize(new Dimension(150, 150));
 	}
 
 	public void setImage(Image i) {

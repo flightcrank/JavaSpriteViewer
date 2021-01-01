@@ -18,12 +18,19 @@ public class OptionsPanel extends javax.swing.JPanel {
 	
 	public String fileName;
 	public Renderer rend;
+	public Sprite2D sprite;
 	
 	/**
 	 * Creates new form OptionsPanel
 	 */
 	public OptionsPanel() {
+		
 		initComponents();
+	}
+	
+	public void setSprite(Sprite2D sprite) {
+		
+		this.sprite = sprite;
 	}
 
 	/**
@@ -73,6 +80,14 @@ public class OptionsPanel extends javax.swing.JPanel {
                 indexSpinner = new javax.swing.JSpinner();
                 jLabel7 = new javax.swing.JLabel();
                 scaleSpinnerY = new javax.swing.JSpinner();
+                AnimationOptionsPanel = new javax.swing.JPanel();
+                jCheckBox2 = new javax.swing.JCheckBox();
+                addFrameSpinner = new javax.swing.JSpinner();
+                jButton2 = new javax.swing.JButton();
+                jComboBox1 = new javax.swing.JComboBox<>();
+                jButton3 = new javax.swing.JButton();
+                jLabel10 = new javax.swing.JLabel();
+                jSpinner1 = new javax.swing.JSpinner();
                 jLabel8 = new javax.swing.JLabel();
                 jLabel9 = new javax.swing.JLabel();
 
@@ -98,7 +113,6 @@ public class OptionsPanel extends javax.swing.JPanel {
                 jImagePanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
                 jImagePanel1.setDoubleBuffered(true);
                 jImagePanel1.setMinimumSize(new java.awt.Dimension(150, 150));
-                jImagePanel1.setPreferredSize(new java.awt.Dimension(150, 150));
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 0;
@@ -127,7 +141,6 @@ public class OptionsPanel extends javax.swing.JPanel {
                 gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 0;
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
                 gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
                 SpriteOptionsPanel.add(jLabel1, gridBagConstraints);
 
@@ -136,7 +149,6 @@ public class OptionsPanel extends javax.swing.JPanel {
                 gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 1;
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
                 gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
                 SpriteOptionsPanel.add(jLabel2, gridBagConstraints);
 
@@ -164,7 +176,6 @@ public class OptionsPanel extends javax.swing.JPanel {
                 gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 2;
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
                 gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
                 SpriteOptionsPanel.add(jLabel3, gridBagConstraints);
 
@@ -181,7 +192,6 @@ public class OptionsPanel extends javax.swing.JPanel {
                 gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 4;
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
                 gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
                 SpriteOptionsPanel.add(jLabel4, gridBagConstraints);
 
@@ -245,19 +255,99 @@ public class OptionsPanel extends javax.swing.JPanel {
                 gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 1;
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
                 gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
                 add(SpriteOptionsPanel, gridBagConstraints);
 
-                jLabel8.setText("Version 1.0");
+                AnimationOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Animation Options", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+                AnimationOptionsPanel.setLayout(new java.awt.GridBagLayout());
+
+                jCheckBox2.setText("Enable animation");
+                jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jCheckBox2ActionPerformed(evt);
+                        }
+                });
                 gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 0;
+                gridBagConstraints.gridwidth = 2;
+                gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
+                AnimationOptionsPanel.add(jCheckBox2, gridBagConstraints);
+
+                addFrameSpinner.setModel(new javax.swing.SpinnerNumberModel());
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 1;
+                gridBagConstraints.gridy = 1;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                gridBagConstraints.ipadx = 20;
+                gridBagConstraints.weightx = 1.0;
+                gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
+                AnimationOptionsPanel.add(addFrameSpinner, gridBagConstraints);
+
+                jButton2.setText("Add Frame");
+                jButton2.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jButton2ActionPerformed(evt);
+                        }
+                });
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 0;
+                gridBagConstraints.gridy = 1;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
+                AnimationOptionsPanel.add(jButton2, gridBagConstraints);
+
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 1;
                 gridBagConstraints.gridy = 2;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
+                AnimationOptionsPanel.add(jComboBox1, gridBagConstraints);
+
+                jButton3.setText("Remove Frame");
+                jButton3.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jButton3ActionPerformed(evt);
+                        }
+                });
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 0;
+                gridBagConstraints.gridy = 2;
+                gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
+                AnimationOptionsPanel.add(jButton3, gridBagConstraints);
+
+                jLabel10.setText("Speed (fps):");
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 0;
+                gridBagConstraints.gridy = 3;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
+                AnimationOptionsPanel.add(jLabel10, gridBagConstraints);
+
+                jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 1;
+                gridBagConstraints.gridy = 3;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
+                AnimationOptionsPanel.add(jSpinner1, gridBagConstraints);
+
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 0;
+                gridBagConstraints.gridy = 2;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+                add(AnimationOptionsPanel, gridBagConstraints);
+
+                jLabel8.setText("Version 1.1");
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridy = 3;
                 add(jLabel8, gridBagConstraints);
 
                 jLabel9.setText("Coded by: Joshua Lambert");
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridy = 4;
-                gridBagConstraints.weightx = 1.0;
+                gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+                gridBagConstraints.weighty = 1.0;
                 add(jLabel9, gridBagConstraints);
         }// </editor-fold>//GEN-END:initComponents
 
@@ -292,16 +382,63 @@ public class OptionsPanel extends javax.swing.JPanel {
 		}
         }//GEN-LAST:event_jButton1ActionPerformed
 
+        private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+                // TODO add your handling code here:
+        }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+        private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+                
+		if (sprite != null) {
+			
+			int num = jComboBox1.getItemCount();
+			int[] newFrames = new int[num + 1];
+
+			for (int i = 0; i < num; i++) {
+
+				newFrames[i] = jComboBox1.getItemAt(i);
+			}
+			
+			newFrames[num] = (int) addFrameSpinner.getValue();
+			jComboBox1.addItem((int) addFrameSpinner.getValue());
+			sprite.frames = newFrames;
+		}
+        }//GEN-LAST:event_jButton2ActionPerformed
+
+        private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+		
+		if (sprite != null) {
+			
+			jComboBox1.removeItemAt(jComboBox1.getSelectedIndex());
+			
+			int num = jComboBox1.getItemCount();
+			int[] newFrames = new int[num];
+
+			for (int i = 0; i < num; i++) {
+
+				newFrames[i] = jComboBox1.getItemAt(i);
+			}
+						
+			sprite.frames = newFrames;
+		}
+        }//GEN-LAST:event_jButton3ActionPerformed
+
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
+        private javax.swing.JPanel AnimationOptionsPanel;
         private javax.swing.JPanel SpriteOptionsPanel;
         private javax.swing.JPanel TexturePanel;
+        private javax.swing.JSpinner addFrameSpinner;
         public javax.swing.JSpinner heightSpinner;
         public javax.swing.JSpinner indexSpinner;
         private javax.swing.JButton jButton1;
+        private javax.swing.JButton jButton2;
+        private javax.swing.JButton jButton3;
         public javax.swing.JCheckBox jCheckBox1;
+        public javax.swing.JCheckBox jCheckBox2;
+        public javax.swing.JComboBox<Integer> jComboBox1;
         public JImagePanel jImagePanel1;
         private javax.swing.JLabel jLabel1;
+        private javax.swing.JLabel jLabel10;
         private javax.swing.JLabel jLabel2;
         private javax.swing.JLabel jLabel3;
         private javax.swing.JLabel jLabel4;
@@ -310,6 +447,7 @@ public class OptionsPanel extends javax.swing.JPanel {
         private javax.swing.JLabel jLabel7;
         private javax.swing.JLabel jLabel8;
         private javax.swing.JLabel jLabel9;
+        public javax.swing.JSpinner jSpinner1;
         public javax.swing.JSpinner posSpinnerX;
         public javax.swing.JSpinner posSpinnerY;
         public javax.swing.JSpinner scaleSpinnerX;
